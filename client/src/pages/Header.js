@@ -37,7 +37,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     console.log("logout clicked");
-    await fetch("http://localhost:5000/user/logout", {
+    await fetch("https://booking-sever.onrender.com/user/logout", {
       method: "get",
       credentials: "include",
     });

@@ -20,7 +20,7 @@ const SinglePlacePage = () => {
   }, [id]);
 
   const getPlaceDetail = async (id) => {
-    let response = await fetch("http://localhost:5000/place/" + id);
+    let response = await fetch("https://booking-sever.onrender.com/place/" + id);
     let result = await response.json();
 
     setPlaceDetail(result.placeData);

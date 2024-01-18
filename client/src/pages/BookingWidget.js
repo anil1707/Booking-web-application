@@ -46,7 +46,7 @@ const BookingWidget = ({ place }) => {
   };
 
   const handleBooking = async () => {
-    let response = await fetch("http://localhost:5000/booking/create-booking", {
+    let response = await fetch("https://booking-sever.onrender.com/booking/create-booking", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

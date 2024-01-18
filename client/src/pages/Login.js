@@ -35,7 +35,7 @@ const Login = () => {
         setIsValid({ email: true });
         return;
       }
-      let response = await fetch("http://localhost:5000/user/login", {
+      let response = await fetch("https://booking-sever.onrender.com/user/login", {
         method: "post",
         credentials: "include",
         body: JSON.stringify({ email, password }),

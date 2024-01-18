@@ -60,7 +60,7 @@ const Register = () => {
         return;
       }
 
-      let response = await fetch("http://localhost:5000/user/register", {
+      let response = await fetch("https://booking-sever.onrender.com/user/register", {
         method: "POST",
         body: JSON.stringify({
           userName,
