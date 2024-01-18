@@ -93,6 +93,7 @@ const SinglePlacePage = () => {
                   <img key={index}
                     src={"http://localhost:5000/uploads/" + link}
                     style={{ objectFit: "cover" }}
+                    alt=""
                   />
                 );
               })}
@@ -148,17 +149,17 @@ const SinglePlacePage = () => {
           >
             <img
               src={"http://localhost:5000/uploads/" + placeDetail.photos[1]}
-              lt={placeDetail.photos[1]}
+              alt={placeDetail.photos[1]}
               style={{ objectFit: "cover", width: "15vw", height: "23vh" }}
             />
             <img
               src={"http://localhost:5000/uploads/" + placeDetail.photos[2]}
-              lt={placeDetail.photos[2]}
+              alt={placeDetail.photos[2]}
               style={{ objectFit: "cover", width: "15vw", height: "23vh" }}
             />
             <img
               src={"http://localhost:5000/uploads/" + placeDetail.photos[3]}
-              lt={placeDetail.photos[3]}
+              alt={placeDetail.photos[3]}
               style={{ objectFit: "cover", width: "15vw", height: "23vh" }}
             />
             <img

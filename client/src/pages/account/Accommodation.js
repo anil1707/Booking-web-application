@@ -41,7 +41,7 @@ const Accommodation = () => {
       <Box>
         <Box>
           <Account isActive={"accomodation"} />
-          {place.length == 0 && (
+          {place.length === 0 && (
            <Loading/>
           )}
 

@@ -98,6 +98,7 @@ const SingleBookingPage = () => {
                     key={index}
                     src={"http://localhost:5000/uploads/" + link}
                     style={{ objectFit: "cover" }}
+                    alt=""
                   />
                 );
               })}

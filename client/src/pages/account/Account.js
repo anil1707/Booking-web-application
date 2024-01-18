@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ListIcon from "@mui/icons-material/List";
 import AddHomeIcon from "@mui/icons-material/AddHome";
@@ -39,7 +39,7 @@ const Account = ({ isActive }) => {
   useEffect(()=>{
     if(isActive === undefined)
     navigate('/account/profile')
-  },[])
+  })
 
   const navigateAccomodation = () =>{
     navigate('/account/accomodation')
@@ -67,7 +67,7 @@ const Account = ({ isActive }) => {
           }}
         >
           <Box
-            sx={isActive==="profile" || isActive==undefined ? isActiveStyle : isInactiveStyle}
+            sx={isActive==="profile" || isActive===undefined ? isActiveStyle : isInactiveStyle}
             onClick={navigateProfile}
           >
             <PermIdentityIcon sx={{ margin: "0 10px" }} />

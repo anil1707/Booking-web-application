@@ -56,6 +56,7 @@ const Booking = () => {
                       objectFit: "cover",
                       marginRight: "10px",
                     }}
+                    alt=""
                     src={
                       "http://localhost:5000/uploads/" + booking.place.photos[0]
                     }

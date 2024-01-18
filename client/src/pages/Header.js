@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import logo from "../../src/airbnbLogo.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -37,7 +37,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     console.log("logout clicked");
-    let response = await fetch("http://localhost:5000/user/logout", {
+    await fetch("http://localhost:5000/user/logout", {
       method: "get",
       credentials: "include",
     });

@@ -36,7 +36,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
     if (id) {
       getDataById(id);
     }
-  }, []);
+  });
 
   const getDataById = async (id) => {
     let response = await fetch("http://localhost:5000/place/" + id, {
@@ -151,7 +151,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
         }),
         credentials: "include",
       });
-      let result = await response.json();
+      await response.json();
       setIsAddNewPlace(true);
     }
   };
@@ -182,7 +182,6 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
       checkin,
       checkout,
       maxGuests,
-      perks,
     };
     let response = await fetch("http://localhost:5000/place/update", {
       method: "put",
