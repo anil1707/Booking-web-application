@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [isFailed, setIsFailed] = useState(false);
   const [message, setMessage] = useState("");
-  let { user } = useContext(UserContext);
+  // let { user } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
   const [isValid, setIsValid] = useState({ email: false });
 

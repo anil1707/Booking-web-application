@@ -29,7 +29,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
   const [checkout, setCheckout] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
   const [price, setPrice] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
     });
     let result = await response.json();
     if (result) {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
     console.log(result);
     setTitle(result.placeData.title);

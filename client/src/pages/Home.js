@@ -76,6 +76,7 @@ const Home = () => {
                     borderRadius: "12px",
                   }}
                   src={`http://localhost:5000/uploads/${place.photos[0]}`}
+                  alt=""
                 />
               </Paper>
               <Box sx={{ marginTop: "10px" }}>

@@ -9,7 +9,7 @@ const { placeRouter } = require("./routes/place");
 const { bookingRouter } = require("./routes/booking");
 app.use(express.json());
 app.use("/uploads", express.static(__dirname + "/uploads"))
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "https://booking-website-app.netlify.app/", credentials: true }));
 app.use(cookieParser());
 connectDB();
 
