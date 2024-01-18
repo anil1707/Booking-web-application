@@ -26,7 +26,7 @@ const Home = () => {
   }, [user]);
 
   const getAllPlace = async () => {
-    let response = await fetch("http://localhost:5000/place/all-place");
+    let response = await fetch("https://booking-sever.onrender.com/place/all-place");
     let result = await response.json();
     console.log(result);
     if (result) setIsLoading(false);
