@@ -15,10 +15,10 @@ const Error = ({ styleProps, message, marginTop, fontSize , marginBottom, margin
         marginTop:{marginTop},
         fontSize:{fontSize},
         marginBottom:{marginBottom},
-        margin:{margin}
+        // margin:{margin}
       }}
       // marginTop= {`${marginTop}`}
-      style={styleProps}
+      style={{...styleProps, margin:margin}}
     >
       <ErrorIcon sx={{ marginRight: "5px" }} />
       <Typography>{message}</Typography>

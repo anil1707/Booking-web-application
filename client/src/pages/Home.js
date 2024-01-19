@@ -13,7 +13,7 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {
-      fetch("https://booking-sever.onrender.com/user/profile", {
+      fetch("http://localhost:5000/user/profile", {
         method: "get",
         credentials: "include",
       }).then((response) => {
@@ -23,7 +23,7 @@ const Home = () => {
       });
     }
     getAllPlace();
-  }, [user]);
+  }, [user,setUser]);
 
   const getAllPlace = async () => {
     let response = await fetch("https://booking-sever.onrender.com/place/all-place");

@@ -1,7 +1,6 @@
 import { Box, TextField, InputAdornment, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../UserContext";
 import Error from "./Error";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";

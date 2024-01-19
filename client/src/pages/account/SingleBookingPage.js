@@ -19,24 +19,24 @@ const SingleBookingPage = () => {
   const naviage = useNavigate();
   useEffect(() => {
     if (user) {
-      getBooking();
-    }
-  }, [user]);
-  const getBooking = async () => {
-    let response = await fetch(
-      `http://localhost:5000/booking/booking-by-id/${id}`,
-      {
+      fetch(`https://booking-sever.onrender.com/booking/booking-by-id/${id}`, {
         method: "get",
         credentials: "include",
-      }
-    );
-    let result = await response.json();
-    console.log(result);
-    if (result.message === "Data get successfully") {
-      setBooking(result.bookingDetail);
-      setIsLoading(false);
+      }).then((response) => {
+        response
+          .json()
+
+          .then((result) => {
+            console.log(result);
+            if (result.message === "Data get successfully") {
+              setBooking(result.bookingDetail);
+              setIsLoading(false);
+            }
+          });
+      });
     }
-  };
+  }, [user, id]);
+
   console.log(booking);
 
   if (isShowAllPhoto) {
@@ -322,9 +322,9 @@ const SingleBookingPage = () => {
                 textAlign: "center",
                 borderRadius: "8px",
                 cursor: "pointer",
-                ":hover":{background:"gray"}
+                ":hover": { background: "gray" },
               }}
-              onClick={()=>naviage('/place/'+booking.place._id)}
+              onClick={() => naviage("/place/" + booking.place._id)}
             >
               Know more about place
             </Typography>
