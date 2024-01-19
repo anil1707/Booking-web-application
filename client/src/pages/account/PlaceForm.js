@@ -132,7 +132,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
       // update place
       console.log("update place detail");
     } else {
-      let response = await fetch("http://localhost:5000/place/add", {
+      let response = await fetch("https://booking-sever.onrender.com/place/add", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -162,7 +162,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
   };
   const handleDeletePlace = async () => {
     console.log("delete clicked");
-    let response = await fetch("http://localhost:5000/place/delete/" + id, {
+    let response = await fetch("https://booking-sever.onrender.com/place/delete/" + id, {
       method: "delete",
       credentials: "include",
     });
@@ -183,7 +183,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
       checkout,
       maxGuests,
     };
-    let response = await fetch("http://localhost:5000/place/update", {
+    let response = await fetch("https://booking-sever.onrender.com/place/update", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

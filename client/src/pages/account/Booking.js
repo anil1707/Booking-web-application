@@ -15,7 +15,7 @@ const Booking = () => {
     getBookings();
   }, [user]);
   const getBookings = async () => {
-    let response = await fetch("http://localhost:5000/booking/all-booking", {
+    let response = await fetch("https://booking-sever.onrender.com/booking/all-booking", {
       method: "get",
       credentials: "include",
     });

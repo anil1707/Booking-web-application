@@ -17,7 +17,7 @@ const Accommodation = () => {
   }, [isAddNewPlace]);
 
   const getData = async () => {
-    let response = await fetch("http://localhost:5000/place/all-place-owner", {
+    let response = await fetch("https://booking-sever.onrender.com/place/all-place-owner", {
       method: "get",
       credentials: "include",
     });

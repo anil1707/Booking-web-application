@@ -65,9 +65,9 @@ const BookingWidget = ({ place }) => {
 
     let result = await response.json();
     console.log(result);
-    if (result.message === "Booking successfully done!")
-    console.log(result.bookingDetail._id);
-      navigate("/account/booking/" + result.bookingDetail._id);
+    if (result?.message === "Booking successfully done!")
+    console.log(result?.bookingDetail?._id);
+      navigate("/account/booking/" + result?.bookingDetail?._id);
   };
   return (
     <Box>

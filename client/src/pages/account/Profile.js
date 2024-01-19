@@ -8,7 +8,7 @@ const Profile = () => {
   let navigate = useNavigate();
   let { user, setUser } = useContext(UserContext);
   const handleLogout = () => {
-    fetch("http://localhost:5000/user/logout", {
+    fetch("https://booking-sever.onrender.com/user/logout", {
       method: "get",
       credentials: "include",
     });
