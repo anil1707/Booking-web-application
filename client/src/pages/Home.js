@@ -32,7 +32,7 @@ const Home = () => {
     if (result) setIsLoading(false);
     setPlaces([...result.placeData]);
   };
-  console.log(places);
+  // console.log(places);
   const handleSinglePlace = (id) => {
     navigate("/place/" + id);
   };
