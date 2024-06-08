@@ -6,7 +6,7 @@ import AppsIcon from "@mui/icons-material/Apps";
 import CloseIcon from "@mui/icons-material/Close";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import BookingWidget from "./BookingWidget";
-
+let baseUrl = "http://localhost:5000"
 const SinglePlacePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
@@ -20,7 +20,7 @@ const SinglePlacePage = () => {
   }, [id]);
 
   const getPlaceDetail = async (id) => {
-    let response = await fetch("https://booking-sever.onrender.com/place/" + id);
+    let response = await fetch(baseUrl+"/place/" + id);
     let result = await response.json();
 
     setPlaceDetail(result.placeData);
@@ -28,8 +28,6 @@ const SinglePlacePage = () => {
       setIsLoading(false);
     }
   };
-
-  console.log(placeDetail);
   if (isLoading) {
     return <Loading />;
   }
@@ -92,7 +90,7 @@ const SinglePlacePage = () => {
                 return (
                   <img key={index}
                     src={"http://localhost:5000/uploads/" + link}
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover",  width:"1000px", height:"600px" }}
                     alt=""
                   />
                 );
@@ -119,7 +117,7 @@ const SinglePlacePage = () => {
           </a>
         </Box>
 
-        {/* for showing photp */}
+        {/* for showing photo */}
         <Box
           sx={{
             display: "grid",

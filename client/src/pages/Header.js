@@ -8,7 +8,7 @@ import Popover from "@mui/material/Popover";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { deepOrange } from "@mui/material/colors";
-
+let baseUrl = "http://localhost:5000"
 const Header = () => {
   let { user, setUser } = useContext(UserContext);
   let navigate = useNavigate();
@@ -19,7 +19,6 @@ const Header = () => {
   };
 
   const handleClose = () => {
-    console.log("handle close is clicked");
     setAnchorEl(null);
   };
 
@@ -36,8 +35,7 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    console.log("logout clicked");
-    await fetch("https://booking-sever.onrender.com/user/logout", {
+    await fetch(baseUrl+"/user/logout", {
       method: "get",
       credentials: "include",
     });
@@ -59,7 +57,8 @@ const Header = () => {
         width: "90vw",
         justifyContent: "space-between",
         alignItems: "center",
-        position:"sticky"
+        position:"sticky",
+        
       }}
     >
       <Box
@@ -77,7 +76,7 @@ const Header = () => {
           Airbnb
         </Typography>
       </Box>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           justifyContent: "space-around",
@@ -112,7 +111,7 @@ const Header = () => {
             }}
           />
         </Box>
-      </Box>
+      </Box> */}
       <Box
         sx={
           user

@@ -9,17 +9,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import { differenceInCalendarDays, format } from "date-fns";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
+let baseUrl = "http://localhost:5000";
 const SingleBookingPage = () => {
   const { user } = useContext(UserContext);
   let { id } = useParams();
-  console.log(id, user);
   const [booking, setBooking] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isShowAllPhoto, setIsShowAllPhoto] = useState(false);
   const naviage = useNavigate();
   useEffect(() => {
     if (user) {
-      fetch(`https://booking-sever.onrender.com/booking/booking-by-id/${id}`, {
+      fetch(`${baseUrl}/booking/booking-by-id/${id}`, {
         method: "get",
         credentials: "include",
       }).then((response) => {
@@ -27,7 +27,6 @@ const SingleBookingPage = () => {
           .json()
 
           .then((result) => {
-            console.log(result);
             if (result.message === "Data get successfully") {
               setBooking(result.bookingDetail);
               setIsLoading(false);
@@ -36,8 +35,6 @@ const SingleBookingPage = () => {
       });
     }
   }, [user, id]);
-
-  console.log(booking);
 
   if (isShowAllPhoto) {
     return (
@@ -97,7 +94,7 @@ const SingleBookingPage = () => {
                   <img
                     key={index}
                     src={"http://localhost:5000/uploads/" + link}
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", width:"1000px", height:"600px" }}
                     alt=""
                   />
                 );
@@ -133,16 +130,16 @@ const SingleBookingPage = () => {
               fontWeight={"bold"}
               sx={{ margin: "5px 0" }}
             >
-              {booking.place.title}
+              {booking?.place?.title}
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <LocationOnOutlinedIcon />
               <a
                 target="__blank"
-                href={"https://map.google.com/?q=" + booking.place.address}
+                href={"https://map.google.com/?q=" + booking?.place?.address}
                 style={{ color: "black", fontWeight: "bolder" }}
               >
-                {booking.place.address}
+                {booking?.place?.address}
               </a>
             </Box>
             <Box
@@ -175,26 +172,26 @@ const SingleBookingPage = () => {
                 >
                   <Typography marginRight={"3px"}>
                     {differenceInCalendarDays(
-                      new Date(booking.checkout),
-                      new Date(booking.checkin)
+                      new Date(booking?.checkout),
+                      new Date(booking?.checkin)
                     )}
                     <span> nights :</span>
                   </Typography>
                   <Typography>
-                    {format(new Date(booking.checkin), "yyyy-MM-dd")}
+                    {format(new Date(booking?.checkin), "yyyy-MM-dd")}
                   </Typography>
                   <ArrowRightAltIcon fontSize="small" />
                   <Typography>
-                    {format(new Date(booking.checkout), "yyyy-MM-dd")}
+                    {format(new Date(booking?.checkout), "yyyy-MM-dd")}
                   </Typography>
                 </Box>
                 <Typography variant="h6" color={"gray"}>
                   Name: {booking.name}
                 </Typography>
-                <Typography color={"gray"}>Phone: {booking.phone}</Typography>
+                <Typography color={"gray"}>Phone: {booking?.phone}</Typography>
                 <Typography color={"gray"}>
                   Date:{" "}
-                  {format(new Date(booking.createdAt), "yyyy/mm/dd, hh:mm:ss")}
+                  {format(new Date(booking?.createdAt), "yyyy/mm/dd, hh:mm:ss")}
                 </Typography>
               </Box>
               <Box
@@ -206,7 +203,7 @@ const SingleBookingPage = () => {
               >
                 <Typography> Total Price</Typography>
                 <Typography variant="h5" fontWeight={"bold"}>
-                  Rs. {booking.price}
+                  Rs. {booking?.price}
                 </Typography>
               </Box>
             </Box>
@@ -226,9 +223,10 @@ const SingleBookingPage = () => {
                 <Box>
                   <img
                     src={
-                      "http://localhost:5000/uploads/" + booking.place.photos[0]
+                      "http://localhost:5000/uploads/" +
+                      booking?.place?.photos[0]
                     }
-                    alt={booking.place.photos[0]}
+                    alt={booking?.place?.photos[0]}
                     style={{
                       objectFit: "cover",
                       height: "46.5vh",
@@ -246,9 +244,10 @@ const SingleBookingPage = () => {
                 >
                   <img
                     src={
-                      "http://localhost:5000/uploads/" + booking.place.photos[1]
+                      "http://localhost:5000/uploads/" +
+                      booking?.place?.photos[1]
                     }
-                    alt={booking.place.photos[1]}
+                    alt={booking?.place?.photos[1]}
                     style={{
                       objectFit: "cover",
                       width: "15vw",
@@ -257,9 +256,10 @@ const SingleBookingPage = () => {
                   />
                   <img
                     src={
-                      "http://localhost:5000/uploads/" + booking.place.photos[2]
+                      "http://localhost:5000/uploads/" +
+                      booking?.place?.photos[2]
                     }
-                    alt={booking.place.photos[2]}
+                    alt={booking?.place?.photos[2]}
                     style={{
                       objectFit: "cover",
                       width: "15vw",
@@ -268,9 +268,10 @@ const SingleBookingPage = () => {
                   />
                   <img
                     src={
-                      "http://localhost:5000/uploads/" + booking.place.photos[3]
+                      "http://localhost:5000/uploads/" +
+                      booking?.place?.photos[3]
                     }
-                    alt={booking.place.photos[3]}
+                    alt={booking?.place?.photos[3]}
                     style={{
                       objectFit: "cover",
                       width: "15vw",
@@ -279,9 +280,10 @@ const SingleBookingPage = () => {
                   />
                   <img
                     src={
-                      "http://localhost:5000/uploads/" + booking.place.photos[4]
+                      "http://localhost:5000/uploads/" +
+                      booking?.place?.photos[4]
                     }
-                    alt={booking.place.photos[4]}
+                    alt={booking?.place?.photos[4]}
                     style={{
                       objectFit: "cover",
                       width: "15vw",
@@ -313,21 +315,37 @@ const SingleBookingPage = () => {
                 </Box>
               </Box>
             </Box>
-            <Typography
-              sx={{
-                marginTop: "20px",
-                padding: "10px",
-                background: "#cccccc",
-                width: "10vw",
-                textAlign: "center",
-                borderRadius: "8px",
-                cursor: "pointer",
-                ":hover": { background: "gray" },
-              }}
-              onClick={() => naviage("/place/" + booking.place._id)}
-            >
-              Know more about place
-            </Typography>
+            {booking?.place?._id ? (
+              <Typography
+                sx={{
+                  marginTop: "20px",
+                  padding: "10px",
+                  background: "#cccccc",
+                  width: "10vw",
+                  textAlign: "center",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  ":hover": { background: "gray" },
+                }}
+                onClick={() => naviage("/place/" + booking?.place?._id)}
+              >
+                Know more about place
+              </Typography>
+            ) : (
+              <Typography
+                sx={{
+                  marginTop: "20px",
+                  padding: "10px",
+                  background: "#cccccc",
+                  width: "50vw",
+                  textAlign: "center",
+                  borderRadius: "8px",
+                  
+                }}
+              >
+                This accomondation is no longer available
+              </Typography>
+            )}
           </Box>
         )}
       </Box>

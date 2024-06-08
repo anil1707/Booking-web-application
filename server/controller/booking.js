@@ -7,7 +7,6 @@ dotenv.config();
 const createBookingCntroller = async (req, res) => {
   const { place, checkin, checkout, price, numberOfGuest, name, phone } =
     req.body;
-  console.log(place, checkin, checkout, price, numberOfGuest, name, phone);
   let { token } = req.cookies;
   jwt.verify(token, process.env.JWT_SECRET_KEY, {}, async (err, info) => {
     if (err) return err;
@@ -20,10 +19,8 @@ const createBookingCntroller = async (req, res) => {
       !name ||
       !phone
     ) {
-      console.log("in if");
       res.send({ message: "Please fill all the field" });
     } else {
-      console.log("in else");
       const collection = await booking({
         user: info.email,
         place,

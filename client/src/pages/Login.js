@@ -6,7 +6,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import CustomButton from "./CustomButton";
 import * as EmailValidator from "email-validator";
-
+let baseUrl = "http://localhost:5000"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +34,7 @@ const Login = () => {
         setIsValid({ email: true });
         return;
       }
-      let response = await fetch("https://booking-sever.onrender.com/user/login", {
+      let response = await fetch(baseUrl+"/user/login", {
         method: "post",
         credentials: "include",
         body: JSON.stringify({ email, password }),
@@ -49,7 +49,6 @@ const Login = () => {
         setIsFailed(true);
         setMessage(result.message);
       }
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
