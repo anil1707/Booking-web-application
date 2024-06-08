@@ -75,9 +75,7 @@ let profileController = (req, res) => {
     if (token)
       jwt.verify(token, process.env.JWT_SECRET_KEY, {}, async (err, info) => {
         if (err) throw err;
-        console.log(info.email);
         let userDoc = await user.findOne({ email: info.email });
-        console.log(userDoc);
         res.json({ email: info.email, userName: userDoc.userName, id:userDoc._id });
       });
     else {

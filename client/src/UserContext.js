@@ -6,6 +6,7 @@ let UserContext = createContext({});
 let UserContextProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [id, setId] = useState();
+  const [userDetail, setUserDetail] = useState({});
   useEffect(() => {
     if (!user) {
       fetch("http://localhost:5000/user/profile", {
@@ -16,15 +17,16 @@ let UserContextProvider = ({ children }) => {
           console.log(result);
           setUser(result?.userName);
           setId(result.id)
+          setUserDetail(result)
         });
       });
     }
-  },[user]);
+  },[user, userDetail]);
 
 
   return (
     <Box>
-      <UserContext.Provider value={{ user, setUser, id }}>
+      <UserContext.Provider value={{ user, setUser, id, setUserDetail, userDetail }}>
         {children}
       </UserContext.Provider>
     </Box>

@@ -15,7 +15,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-
+let baseUrl = "http://localhost:5000"
 const PlaceForm = ({ setIsAddNewPlace }) => {
   let { id } = useParams();
   const [title, setTitle] = useState("");
@@ -36,17 +36,16 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
     if (id) {
       getDataById(id);
     }
-  });
+  },[]);
 
   const getDataById = async (id) => {
-    let response = await fetch("http://localhost:5000/place/" + id, {
+    let response = await fetch(baseUrl+"/place/" + id, {
       credentials: "include",
     });
     let result = await response.json();
     if (result) {
       // setIsLoading(false);
     }
-    console.log(result);
     setTitle(result.placeData.title);
     setAddress(result.placeData.address);
     setDescription(result.placeData.description);
@@ -71,7 +70,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
     const data = new FormData();
     data.set("photos", files[0]);
 
-    let response = await fetch("http://localhost:5000/place/upload-photo", {
+    let response = await fetch(baseUrl+"/place/upload-photo", {
       method: "post",
       body: data,
       credentials: "include",
@@ -112,7 +111,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
   };
 
   const addPhotoByLink = async () => {
-    let response = await fetch("http://localhost:5000/place/upload-by-link", {
+    let response = await fetch(baseUrl+"/place/upload-by-link", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -130,9 +129,8 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
   const handleSavePlace = async () => {
     if (id) {
       // update place
-      console.log("update place detail");
     } else {
-      let response = await fetch("https://booking-sever.onrender.com/place/add", {
+      let response = await fetch(baseUrl+"/place/add", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -157,12 +155,10 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
   };
 
   const handleCancel = () => {
-    console.log("handle cancel is clicked");
     setIsAddNewPlace(true);
   };
   const handleDeletePlace = async () => {
-    console.log("delete clicked");
-    let response = await fetch("https://booking-sever.onrender.com/place/delete/" + id, {
+    let response = await fetch(baseUrl+"/place/delete/" + id, {
       method: "delete",
       credentials: "include",
     });
@@ -183,7 +179,7 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
       checkout,
       maxGuests,
     };
-    let response = await fetch("https://booking-sever.onrender.com/place/update", {
+    let response = await fetch(baseUrl+"/place/update", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -284,7 +280,6 @@ const PlaceForm = ({ setIsAddNewPlace }) => {
           <Box sx={{ display: "grid", gridTemplateColumns: "repeat(5, 2fr)" }}>
             {photo &&
               photo.map((item, index) => {
-                console.log(item);
                 return (
                   <Box key={index} sx={{ position: "relative" }}>
                     <img

@@ -4,16 +4,15 @@ import { UserContext } from "../UserContext";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
-
+let baseUrl = "http://localhost:5000"
 const Home = () => {
-  console.log(process.env);
   let { user, setUser } = useContext(UserContext);
   const [places, setPlaces] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {
-      fetch("http://localhost:5000/user/profile", {
+      fetch(baseUrl+ "/user/profile", {
         method: "get",
         credentials: "include",
       }).then((response) => {
@@ -26,13 +25,11 @@ const Home = () => {
   }, [user,setUser]);
 
   const getAllPlace = async () => {
-    let response = await fetch("https://booking-sever.onrender.com/place/all-place");
+    let response = await fetch(baseUrl+"/place/all-place");
     let result = await response.json();
-    console.log(result);
     if (result) setIsLoading(false);
     setPlaces([...result.placeData]);
   };
-  // console.log(places);
   const handleSinglePlace = (id) => {
     navigate("/place/" + id);
   };

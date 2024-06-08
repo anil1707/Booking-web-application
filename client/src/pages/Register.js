@@ -6,7 +6,7 @@ import * as EmailValidator from "email-validator";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import CustomButton from "./CustomButton";
-
+let baseUrl = "http://localhost:5000"
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -54,13 +54,12 @@ const Register = () => {
         setIsValid({ email: true });
         return;
       }
-      console.log("password", password, confirmPassword);
       if (password !== confirmPassword) {
         setIsValid({ password: true });
         return;
       }
 
-      let response = await fetch("https://booking-sever.onrender.com/user/register", {
+      let response = await fetch(baseUrl+"/user/register", {
         method: "POST",
         body: JSON.stringify({
           userName,
@@ -73,12 +72,10 @@ const Register = () => {
         },
       });
       let result = await response.json();
-      console.log(result);
       if (
         result.message ===
         "User already exist, Please try with another email or login"
       ) {
-        console.log("already exist");
         setIsFailed(true);
         setMessage(
           "User already exist, Please try with another email or login"
@@ -91,7 +88,6 @@ const Register = () => {
         setIsFailed(true);
         setMessage(result.error);
       } else {
-        console.log("else");
         setIsFailed(true);
         setMessage(result.message);
       }

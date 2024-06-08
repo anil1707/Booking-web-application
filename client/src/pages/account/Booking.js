@@ -5,7 +5,7 @@ import { UserContext } from "../../UserContext";
 import { differenceInCalendarDays, format } from "date-fns";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { useNavigate } from "react-router-dom";
-
+let baseUrl = "http://localhost:5000"
 const Booking = () => {
   const { user } = useContext(UserContext);
   const [bookings, setBookings] = useState();
@@ -15,7 +15,7 @@ const Booking = () => {
     getBookings();
   }, [user]);
   const getBookings = async () => {
-    let response = await fetch("https://booking-sever.onrender.com/booking/all-booking", {
+    let response = await fetch(baseUrl+"/booking/all-booking", {
       method: "get",
       credentials: "include",
     });
@@ -25,7 +25,6 @@ const Booking = () => {
   };
 
   const handleBookingById = (id) =>{
-    console.log(id);
     navigate('/account/booking/'+id)
   }
   return (
@@ -35,7 +34,6 @@ const Booking = () => {
         {bookings &&
           bookings.length > 0 &&
           bookings.map((booking, index) => {
-            console.log(booking);
             return (
               <Box key={index}
                 sx={{
@@ -58,7 +56,7 @@ const Booking = () => {
                     }}
                     alt=""
                     src={
-                      "http://localhost:5000/uploads/" + booking.place.photos[0]
+                      "http://localhost:5000/uploads/" + booking?.place?.photos[0]
                     }
                   />
                 </Box>
@@ -68,7 +66,7 @@ const Booking = () => {
                     fontWeight={"bold"}
                     marginBottom={"10px"}
                   >
-                    {booking.place.title}
+                    {booking?.place?.title}
                   </Typography>
                   <Box
                     sx={{

@@ -5,25 +5,22 @@ import Account from "./Account";
 import PlaceForm from "./PlaceForm";
 import Loading from "../Loading";
 import AddIcon from '@mui/icons-material/Add';
-
+let baseUrl = "http://localhost:5000"
 const Accommodation = () => {
   const [isAddNewPlace, setIsAddNewPlace] = useState(true);
   const [place, setPlace] = useState([]);
   let navigate = useNavigate();
-
-  console.log("is add new place", isAddNewPlace);
   useEffect(() => {
     getData();
   }, [isAddNewPlace]);
 
   const getData = async () => {
-    let response = await fetch("https://booking-sever.onrender.com/place/all-place-owner", {
+    let response = await fetch(baseUrl+"/place/all-place-owner", {
       method: "get",
       credentials: "include",
     });
 
     let result = await response.json();
-    console.log(result);
     setPlace(result.data);
   };
 

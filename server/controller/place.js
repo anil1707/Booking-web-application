@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 const place = require("../models/places");
 dotenv.config();
 const uploadByLinkController = async (req, res) => {
-  console.log(req.body);
   const newName = "photo" + Date.now() + ".jpg";
   const options = {
     url: req.body.link,
@@ -15,7 +14,6 @@ const uploadByLinkController = async (req, res) => {
   download
     .image(options)
     .then(({ filename }) => {
-      console.log("Saved to", filename);
     })
     .catch((err) => console.error("err", err));
   res.json(newName);
@@ -54,7 +52,6 @@ const addPlaceController = async (req, res) => {
   let { token } = req.cookies;
   jwt.verify(token, process.env.JWT_SECRET_KEY, {}, async (err, info) => {
     if (err) throw err;
-    console.log(info.email);
     const collection = await place({
       owner: info.email,
       title,
@@ -77,9 +74,7 @@ const getAllPlacesControllerByOwner = async (req, res) => {
   let { token } = req.cookies;
   jwt.verify(token, process.env.JWT_SECRET_KEY, {}, async (err, info) => {
     if (err) throw err;
-    // console.log(info.email);
     let placeData = await place.find({ owner: info.email });
-    // console.log("Place", placeData);
     res.json({ message: "Place added successfully!", data: placeData });
   });
 };
@@ -100,7 +95,6 @@ const updatePlaceController = async (req, res) => {
   } = req.body;
   jwt.verify(token, process.env.JWT_SECRET_KEY, {}, async (err, info) => {
     if (err) throw err;
-    console.log(info);
     let placeDoc = await place.findById({_id:id})
     let result;
     if(placeDoc.owner === info.email)

@@ -3,7 +3,6 @@ import React from "react";
 import ErrorIcon from "@mui/icons-material/Error";
 
 const Error = ({ styleProps, message, marginTop, fontSize , marginBottom, margin}) => {
-  console.log(message, marginTop);
   return (
     <Box
       sx={{

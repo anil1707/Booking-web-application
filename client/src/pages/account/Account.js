@@ -6,7 +6,6 @@ import AddHomeIcon from "@mui/icons-material/AddHome";
 import { useNavigate } from "react-router-dom";
 
 const Account = ({ isActive }) => {
-  console.log(isActive);
   const navigate = useNavigate();
   let isActiveStyle = {
     background: "#ff6699  ",
